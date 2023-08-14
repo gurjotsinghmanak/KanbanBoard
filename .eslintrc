@@ -35,7 +35,7 @@
     "no-shadow": ["error", { "hoist": "all" }],
     "default-param-last": ["error"],
     "no-unused-expressions": ["error", { "allowShortCircuit": true }],
-    "import/no-extraneous-dependencies": ["error", { "dependencies": false }],
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}],
 
     "import/prefer-default-export": 0,
     "react/jsx-no-bind": "off",
