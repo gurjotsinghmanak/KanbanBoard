@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { Container } from "./styles";
 
 function Label({ children, color, ...props }) {
-  console.log(color)
   return (
     <Container color={color} {...props}>
       {children}
