@@ -12,4 +12,5 @@ export const Container = styled(Box)`
   font-weight: 700;
   line-height: 23px;
   text-align: center;
+  text-transform: uppercase;
 `;

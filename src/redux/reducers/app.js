@@ -1,10 +1,10 @@
 import { v4 as uuid } from "uuid";
-import { HANDLE_DROP } from "redux/constants/app";
+import { HANDLE_DROP, HANDLE_ADD_EDIT } from "redux/constants/app";
 
 export const initialState = {
   // columnised data
   tasksData: {
-    [uuid()]: {
+    new: {
       name: "New",
       items: [
         {
@@ -30,15 +30,15 @@ export const initialState = {
         }
       ]
     },
-    [uuid()]: {
+    inProgress: {
       name: "In Progress",
       items: []
     },
-    [uuid()]: {
+    qa: {
       name: "QA",
       items: []
     },
-    [uuid()]: {
+    completed: {
       name: "Completed",
       items: []
     }
@@ -46,7 +46,7 @@ export const initialState = {
 };
 
 const appReducer = (state = initialState, action = {}) => {
-  const { type, source, destination } = action;
+  const { type, source, destination, data } = action;
   switch (type) {
     case HANDLE_DROP: {
       const { droppableId: sourceDroppableId, index: sourceIndex } = source;
@@ -88,6 +88,15 @@ const appReducer = (state = initialState, action = {}) => {
               ...sourceItemsWithoutSource.slice(destinationIndex)
             ]
           }
+        }
+      };
+    }
+    case HANDLE_ADD_EDIT: {
+      return {
+        ...state,
+        tasksData: {
+          ...state.tasksData,
+          new: { ...state.tasksData.new, items: [...state.tasksData.new.items, data] }
         }
       };
     }

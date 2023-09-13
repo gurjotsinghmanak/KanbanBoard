@@ -1,1 +1,2 @@
-export const HANDLE_DROP = "todos/HANDLE_DROP";
+export const HANDLE_DROP = "HANDLE_DROP";
+export const HANDLE_ADD_EDIT = "HANDLE_ADD_EDIT"

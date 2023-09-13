@@ -36,6 +36,7 @@ const DraggableDraggingProps = ({ $isDragging }) =>
   css`
     border-color: ${colors.white};
     background-color: ${colors.primary};
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     color: ${colors.white};
   `;
 
@@ -61,6 +62,7 @@ export const DraggableContainer = styled(Box)`
   border: 1px solid ${colors.gray2};
   border-radius: 4px;
   background-color: ${colors.white};
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   user-select: none;
   ${DraggableDraggingProps};
 `;

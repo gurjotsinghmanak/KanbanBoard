@@ -1,4 +1,4 @@
-import { HANDLE_DROP } from "redux/constants/app";
+import { HANDLE_DROP, HANDLE_ADD_EDIT } from "redux/constants/app";
 
 export function handleDrop(source, destination) {
   return {
@@ -6,4 +6,11 @@ export function handleDrop(source, destination) {
     source,
     destination
   };
+}
+
+export function handleAddEdit(data) {
+  return {
+    type: HANDLE_ADD_EDIT,
+    data
+  }
 }
