@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState, lazy } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useSelector, useDispatch } from "react-redux";
 
-import { handleDrop } from "redux/actions/app";
+import { handleDrop, handleAddEdit } from "redux/actions/app";
 import { tasksDataSelector } from "redux/selectors/app";
 
 import Chip from "components/Chip";
 import Label from "components/Label";
 import User from "components/User";
+import Loadable from "components/Loadable";
 
 import { PLATFORM_COLOR_CONFIG, PRIORITY_COLOR_CONFIG } from "utils/constants";
 import {
@@ -20,7 +21,10 @@ import {
   Info
 } from "./styles";
 
+const AddEditItem = Loadable(lazy(() => import("containers/AddEditItem")));
+
 function TasksList() {
+  const [editData, setEditData] = useState({});
   const data = useSelector(tasksDataSelector);
   const dispatch = useDispatch();
 
@@ -28,6 +32,11 @@ function TasksList() {
     const { source, destination } = drop;
     if (!destination) return;
     dispatch(handleDrop(source, destination));
+  }
+
+  function handleSubmit(item) {
+    dispatch(handleAddEdit(item));
+    setEditData({});
   }
 
   return (
@@ -48,6 +57,7 @@ function TasksList() {
                           {...dragHandleProps}
                           $isDragging={isDragging}
                           style={{ ...draggableProps.style }}
+                          onClick={() => setEditData(item)}
                         >
                           <TaskName>{item.name}</TaskName>
                           <Chip color={PLATFORM_COLOR_CONFIG[item.platform.toLowerCase()]}>{item.platform}</Chip>
@@ -66,6 +76,9 @@ function TasksList() {
           </DragDropContainer>
         ))}
       </DragDropContext>
+      {!!editData.id && (
+        <AddEditItem open={!!editData.id} data={editData} handleSubmit={handleSubmit} onClose={() => setEditData({})} />
+      )}
     </Container>
   );
 }

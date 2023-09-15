@@ -92,11 +92,19 @@ const appReducer = (state = initialState, action = {}) => {
       };
     }
     case HANDLE_ADD_EDIT: {
+      const { items } = state.tasksData.new;
+      const editIndex = items.findIndex((item) => item.id === data.id);
       return {
         ...state,
         tasksData: {
           ...state.tasksData,
-          new: { ...state.tasksData.new, items: [...state.tasksData.new.items, data] }
+          new: {
+            ...state.tasksData.new,
+            items:
+              editIndex !== -1
+                ? [...items.slice(0, editIndex), data, ...items.slice(editIndex + 1)]
+                : [...items, { ...data, id: uuid() }]
+          }
         }
       };
     }

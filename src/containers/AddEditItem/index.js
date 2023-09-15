@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { v4 as uuid } from "uuid";
 
 import Modal from "components/Modal";
 import ModalHeader from "components/ModalHeader";
@@ -13,9 +12,9 @@ import TextField from "components/TextField";
 import { FooterWrap, FieldWrap } from "./styles";
 
 function AddEditBook({ open, data, handleSubmit, onClose }) {
-  const [name, setName] = useState(data.title || "");
-  const [platform, setPlatform] = useState(data.label || "");
-  const [user, setUser] = useState(data.description || "");
+  const [name, setName] = useState(data.name || "");
+  const [platform, setPlatform] = useState(data.platform || "");
+  const [user, setUser] = useState(data.user || "");
   const [priority, setPriority] = useState(data.priority || "");
 
   return (
@@ -50,7 +49,7 @@ function AddEditBook({ open, data, handleSubmit, onClose }) {
           <Button
             color="primary"
             variant="contained"
-            onClick={() => handleSubmit({ id: uuid(), name, platform, user, priority })}
+            onClick={() => handleSubmit({ id: data.id, name, platform, user, priority })}
           >
             Save
           </Button>
