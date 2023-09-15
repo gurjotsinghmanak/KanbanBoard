@@ -28,15 +28,18 @@ function AddEditBook({ open, data, handleSubmit, onClose }) {
         </FieldWrap>
         <FieldWrap>
           <FieldLabel required>Platform</FieldLabel>
-          <TextField value={platform} onChange={(event) => setPlatform(event.target.value)} />
+          <TextField value={platform} onChange={(event) => setPlatform(event.target.value)} />{" "}
+          {/*  TODO: Above field to be replaced by dropdown */}
         </FieldWrap>
         <FieldWrap>
           <FieldLabel required>User</FieldLabel>
           <TextField value={user} onChange={(event) => setUser(event.target.value)} />
+          {/*  TODO: Above field to be replaced by dropdown */}
         </FieldWrap>
         <FieldWrap>
           <FieldLabel required>Priority</FieldLabel>
           <TextField value={priority} onChange={(event) => setPriority(event.target.value)} />
+          {/*  TODO: Above field to be replaced by dropdown */}
         </FieldWrap>
       </ModalContent>
       <ModalFooter>
